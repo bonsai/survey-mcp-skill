@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.pyc
+*.egg-info/
+.env
+outputs/
+.mypy_cache/
+.pytest_cache/
+dist/
+build/
+*.db
+data-survey-mcp-skill/
+llm-wiki/

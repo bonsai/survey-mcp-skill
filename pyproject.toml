@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "survey-mcp-skill"
+version = "0.1.0"
+description = "MCP skill for conversational survey research with FastAPI + FastMCP"
+requires-python = ">=3.10"
+dependencies = [
+    "fastmcp>=4.0.0",
+    "fastapi>=0.100.0",
+    "uvicorn>=0.30.0",
+    "httpx>=0.27.0",
+    "pydantic>=2.9.0",
+    "python-dotenv>=1.0.0",
+]
+
+[tool.setuptools.packages.find]
+where = ["src"]
