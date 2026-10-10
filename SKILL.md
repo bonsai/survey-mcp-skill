@@ -22,7 +22,7 @@ FastAPI + FastMCP + OpenAPI で実装。ローカル実行、AWS 不使用。
 }
 ```
 
-結果はローカルに保存され、ファイルパスが返る。
+結果はまず Markdown として生成され、それを基に JSON / HTML / llm-wiki が派生する。ファイルパスが返る。
 
 ## ローカル実行
 

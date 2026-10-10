@@ -40,8 +40,14 @@ pi mcp add survey-mcp-skill -- \
   -m survey_mcp_skill stdio
 ```
 
+## Output flow
+
+1. **Markdown** — primary report (human-readable, version-controlled)
+2. **JSON / HTML** — derived structured artifacts
+3. **llm-wiki** — recap derived from the markdown
+
 ## Output locations
 
 - DB: `~/.db/survey_mcp_skill.db`
-- Reports: `~/data-survey-mcp-skill/YYYY-MM-DD/`
+- Reports: `~/data-survey-mcp-skill/YYYY-MM-DD/` (MD + JSON + HTML)
 - Wiki recaps: `~/llm-wiki/survey-mcp-skill/`

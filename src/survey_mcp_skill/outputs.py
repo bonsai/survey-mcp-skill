@@ -214,7 +214,11 @@ def save_survey(
     html_path = date_dir / f"{run_id}.html"
     wiki_path = _wiki_dir() / f"{run_id}.md"
 
+    # Step 1: Primary artifact — Markdown report
     md = _build_markdown(run_id, query, domain, created_at, summary, papers)
+    md_path.write_text(md, encoding="utf-8")
+
+    # Step 2: Derived structured artifacts — JSON / HTML
     html = _build_html(run_id, query, domain, created_at, summary, papers)
     payload = {
         "run_id": run_id,
@@ -224,14 +228,12 @@ def save_survey(
         "summary": summary,
         "papers": [p.model_dump() for p in papers],
     }
-
-    md_path.write_text(md, encoding="utf-8")
     html_path.write_text(html, encoding="utf-8")
     json_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
-    wiki_path.write_text(
-        _build_wiki_markdown(run_id, query, domain, created_at, summary, papers),
-        encoding="utf-8",
-    )
+
+    # Step 3: Derived recap — llm-wiki (summarized from the primary markdown)
+    wiki = _build_wiki_markdown(run_id, query, domain, created_at, summary, papers)
+    wiki_path.write_text(wiki, encoding="utf-8")
 
     with sqlite3.connect(_db_path()) as conn:
         conn.execute(
